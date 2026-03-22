@@ -74,15 +74,10 @@
     margin-bottom: 3rem;
   }
 
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1.5rem;
-  }
-
   .moon {
     font-size: 1.8rem;
+    display: block;
+    margin-bottom: 1rem;
     animation: moonFloat 4s ease-in-out infinite;
   }
 
@@ -100,10 +95,7 @@
     line-height: 1.1;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--rose);
-  }
+  h1 em { font-style: italic; color: var(--rose); }
 
   .subtitle {
     margin-top: 0.6rem;
@@ -122,9 +114,7 @@
     border: 1px solid rgba(201, 125, 140, 0.12);
   }
 
-  .form-section {
-    margin-bottom: 2rem;
-  }
+  .form-section { margin-bottom: 2rem; }
 
   label {
     display: block;
@@ -149,17 +139,12 @@
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
     -webkit-appearance: none;
+    appearance: none;
   }
 
   input[type="number"]:focus, input[type="date"]:focus {
     border-color: var(--rose);
     box-shadow: 0 0 0 3px rgba(201, 125, 140, 0.12);
-  }
-
-  .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
   }
 
   .hint {
@@ -168,6 +153,14 @@
     margin-top: 0.4rem;
   }
 
+  /* Two-col on desktop */
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* Phase pills grid */
   .phase-legend {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -178,11 +171,12 @@
   .phase-pill {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.65rem 0.9rem;
+    gap: 0.5rem;
+    padding: 0.7rem 0.85rem;
     border-radius: 10px;
     font-size: 0.82rem;
     font-weight: 400;
+    min-width: 0;
   }
 
   .phase-pill .dot {
@@ -191,23 +185,33 @@
     flex-shrink: 0;
   }
 
+  .phase-pill .label-text {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .phase-pill .days {
-    margin-left: auto;
     font-size: 0.72rem;
     color: var(--muted);
     font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .pill-menstrual { background: var(--menstrual-bg); color: var(--menstrual); }
   .pill-follicular { background: var(--follicular-bg); color: #b06030; }
-  .pill-ovulation { background: var(--ovulation-bg); color: #9a7010; }
-  .pill-luteal { background: var(--luteal-bg); color: #3d4d7a; }
+  .pill-ovulation  { background: var(--ovulation-bg);  color: #9a7010; }
+  .pill-luteal     { background: var(--luteal-bg);     color: #3d4d7a; }
 
   .dot-menstrual { background: var(--menstrual); }
   .dot-follicular { background: var(--follicular); }
-  .dot-ovulation { background: var(--ovulation); }
-  .dot-luteal { background: var(--luteal); }
+  .dot-ovulation  { background: var(--ovulation); }
+  .dot-luteal     { background: var(--luteal); }
 
+  /* Cycles row */
   .cycles-option {
     display: flex;
     align-items: center;
@@ -217,13 +221,17 @@
 
   .cycles-option label {
     margin: 0;
-    flex-shrink: 0;
+    flex: 1;
     font-size: 0.78rem;
   }
 
   .cycles-option input[type="number"] {
-    max-width: 100px;
+    width: 80px;
+    min-width: 80px;
+    flex-shrink: 0;
     text-align: center;
+    font-size: 1.1rem;
+    padding: 0.85rem 0.5rem;
   }
 
   .btn {
@@ -237,19 +245,15 @@
     border: none;
     border-radius: 14px;
     cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    transition: transform 0.15s, box-shadow 0.15s;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    letter-spacing: 0.01em;
+    min-height: 52px;
   }
 
-  .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(122, 61, 76, 0.3);
-  }
-
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(122, 61, 76, 0.3); }
   .btn:active { transform: translateY(0); }
 
   .btn-secondary {
@@ -259,15 +263,7 @@
     box-shadow: none;
   }
 
-  .btn-secondary:hover {
-    box-shadow: 0 4px 12px rgba(122, 61, 76, 0.12);
-  }
-
-  .preview {
-    margin-top: 2rem;
-    display: none;
-  }
-
+  .preview { margin-top: 2rem; display: none; }
   .preview.visible { display: block; }
 
   .preview-title {
@@ -304,13 +300,8 @@
 
   .phase-row:last-child { border-bottom: none; }
 
-  .phase-color {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .phase-name { font-weight: 500; min-width: 90px; }
+  .phase-color { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .phase-name  { font-weight: 500; min-width: 90px; }
   .phase-dates { color: var(--muted); font-size: 0.82rem; }
 
   .divider {
@@ -340,15 +331,34 @@
     color: var(--muted);
     line-height: 1.6;
   }
+
+  /* ── Mobile ── */
+  @media (max-width: 520px) {
+    body { padding: 1.2rem 0.75rem; align-items: flex-start; }
+    header { margin-bottom: 1.6rem; }
+    .card { padding: 1.4rem 1.1rem; border-radius: 18px; }
+
+    /* Stack input columns */
+    .row { grid-template-columns: 1fr; }
+
+    /* Stack phase pills */
+    .phase-legend { grid-template-columns: 1fr; }
+
+    /* Bigger tap target on cycles input */
+    .cycles-option input[type="number"] {
+      width: 90px;
+      min-width: 90px;
+      font-size: 1.2rem;
+      padding: 0.9rem 0.5rem;
+    }
+  }
 </style>
 </head>
 <body>
 <div class="container">
 
   <header>
-    <div class="logo">
-      <span class="moon">🌙</span>
-    </div>
+    <span class="moon">🌙</span>
     <h1>Cycle <em>Calendar</em></h1>
     <p class="subtitle">Your cycle phases, beautifully mapped</p>
   </header>
@@ -359,12 +369,12 @@
       <div class="row">
         <div>
           <label>Cycle length (days)</label>
-          <input type="number" id="cycleLength" value="28" min="21" max="45">
+          <input type="number" id="cycleLength" value="28" min="21" max="45" inputmode="numeric">
           <p class="hint">Typically 21–45 days</p>
         </div>
         <div>
           <label>Period duration (days)</label>
-          <input type="number" id="periodLength" value="5" min="2" max="10">
+          <input type="number" id="periodLength" value="5" min="2" max="10" inputmode="numeric">
           <p class="hint">Usually 2–7 days</p>
         </div>
       </div>
@@ -375,38 +385,38 @@
       <input type="date" id="startDate">
     </div>
 
-    <div class="phase-legend" id="phaseLegend">
+    <div class="phase-legend">
       <div class="phase-pill pill-menstrual">
         <span class="dot dot-menstrual"></span>
-        Menstrual
+        <span class="label-text">Menstrual</span>
         <span class="days" id="menstrualDays">days 1–5</span>
       </div>
       <div class="phase-pill pill-follicular">
         <span class="dot dot-follicular"></span>
-        Follicular
+        <span class="label-text">Follicular</span>
         <span class="days" id="follicularDays">days 6–13</span>
       </div>
       <div class="phase-pill pill-ovulation">
         <span class="dot dot-ovulation"></span>
-        Ovulation
-        <span class="days" id="ovulationDays">days 14</span>
+        <span class="label-text">Ovulation</span>
+        <span class="days" id="ovulationDays">day 14</span>
       </div>
       <div class="phase-pill pill-luteal">
         <span class="dot dot-luteal"></span>
-        Luteal
+        <span class="label-text">Luteal</span>
         <span class="days" id="lutealDays">days 15–28</span>
       </div>
     </div>
 
-    <div class="form-section" style="display:flex; align-items:center; gap:1rem;">
-      <label style="margin:0; flex-shrink:0;">Generate how many cycles?</label>
-      <input type="number" id="numCycles" value="1" min="1" max="12" style="max-width:80px; text-align:center;">
+    <div class="cycles-option">
+      <label>Generate how many cycles?</label>
+      <input type="number" id="numCycles" value="6" min="1" max="24" inputmode="numeric">
     </div>
 
     <div class="divider"></div>
 
     <button class="btn" onclick="previewAndDownload()">
-      <span>✦</span> Preview & Download .ics
+      <span>✦</span> Preview &amp; Download .ics
     </button>
 
     <div class="success-msg" id="successMsg">
@@ -428,185 +438,113 @@
   </footer>
 
 </div>
-
 <script>
-  // Set default date to today
-  document.getElementById('startDate').value = new Date().toISOString().split('T')[0];
+  // Default date = today (local time, no UTC shift)
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  document.getElementById('startDate').value =
+    `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
 
-  // Update phase legend dynamically
-  const fields = ['cycleLength', 'periodLength'];
-  fields.forEach(id => document.getElementById(id).addEventListener('input', updateLegend));
+  ['cycleLength','periodLength'].forEach(id =>
+    document.getElementById(id).addEventListener('input', updateLegend)
+  );
   updateLegend();
 
   function updateLegend() {
-    const cycle = parseInt(document.getElementById('cycleLength').value) || 28;
+    const cycle  = parseInt(document.getElementById('cycleLength').value)  || 28;
     const period = parseInt(document.getElementById('periodLength').value) || 5;
-
-    const ovDay = Math.round(cycle - 14);
-    const follStart = period + 1;
-    const follEnd = ovDay - 1;
-    const lutStart = ovDay + 1;
-
-    document.getElementById('menstrualDays').textContent = `days 1–${period}`;
-    document.getElementById('follicularDays').textContent = `days ${follStart}–${follEnd}`;
-    document.getElementById('ovulationDays').textContent = `day ${ovDay}`;
-    document.getElementById('lutealDays').textContent = `days ${lutStart}–${cycle}`;
+    const ovDay  = Math.round(cycle - 14);
+    document.getElementById('menstrualDays').textContent  = `days 1–${period}`;
+    document.getElementById('follicularDays').textContent = `days ${period+1}–${ovDay-1}`;
+    document.getElementById('ovulationDays').textContent  = `day ${ovDay}`;
+    document.getElementById('lutealDays').textContent     = `days ${ovDay+1}–${cycle}`;
   }
 
-  function getPhases(startDate, cycleLength, periodLength) {
-    const ovulationDay = Math.round(cycleLength - 14);
-    const phases = [];
-    const d = (offset) => {
-      const dt = new Date(startDate);
-      dt.setDate(dt.getDate() + offset);
-      return dt;
-    };
-
-    phases.push({
-      name: 'Menstrual Phase 🩸',
-      color: '#c0405a',
-      start: d(0),
-      end: d(periodLength - 1),
-      note: 'Rest and restore. Your body is releasing this cycle.',
-    });
-    phases.push({
-      name: 'Follicular Phase 🌱',
-      color: '#e8956d',
-      start: d(periodLength),
-      end: d(ovulationDay - 2),
-      note: 'Energy rising. Great time for new projects and social plans.',
-    });
-    phases.push({
-      name: 'Ovulation Phase ✨',
-      color: '#d4a843',
-      start: d(ovulationDay - 1),
-      end: d(ovulationDay + 1),
-      note: 'Peak energy and communication. Your most magnetic days.',
-    });
-    phases.push({
-      name: 'Luteal Phase 🌙',
-      color: '#7a8fb5',
-      start: d(ovulationDay + 2),
-      end: d(cycleLength - 1),
-      note: 'Wind down. Prioritize rest and introspection.',
-    });
-
-    return phases;
+  function getPhases(start, cycleLen, periodLen) {
+    const ov = Math.round(cycleLen - 14);
+    const d  = off => { const dt = new Date(start); dt.setDate(dt.getDate()+off); return dt; };
+    return [
+      { name:'Menstrual Phase 🩸', color:'#c0405a', start:d(0),        end:d(periodLen-1), note:'Rest and restore. Your body is releasing this cycle.' },
+      { name:'Follicular Phase 🌱', color:'#e8956d', start:d(periodLen), end:d(ov-2),        note:'Energy rising. Great time for new projects and social plans.' },
+      { name:'Ovulation Phase ✨',  color:'#d4a843', start:d(ov-1),      end:d(ov+1),        note:'Peak energy and communication. Your most magnetic days.' },
+      { name:'Luteal Phase 🌙',     color:'#7a8fb5', start:d(ov+2),      end:d(cycleLen-1),  note:'Wind down. Prioritize rest and introspection.' },
+    ];
   }
 
-  function fmt(d) {
-    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-  }
-
-  function fmtICS(d) {
-    // Format as YYYYMMDD using local date parts to avoid UTC shift issues
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}${m}${day}`;
-  }
-
-  function fmtDTSTAMP() {
-    return new Date().toISOString().replace(/[-:.]/g, '').slice(0, 15) + 'Z';
-  }
-
-  function uid() {
-    return Math.random().toString(36).substring(2, 10) + Date.now().toString(36) + '@cyclecalendar.app';
-  }
+  function fmt(d) { return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}); }
+  function fmtICS(d) { return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`; }
+  function stamp()  { return new Date().toISOString().replace(/[-:.]/g,'').slice(0,15)+'Z'; }
+  function uid()    { return Math.random().toString(36).slice(2,10)+Date.now().toString(36)+'@cycle.app'; }
 
   let icsContent = '';
 
   function previewAndDownload() {
-    const startStr = document.getElementById('startDate').value;
-    const cycleLength = parseInt(document.getElementById('cycleLength').value);
-    const periodLength = parseInt(document.getElementById('periodLength').value);
-    const numCycles = parseInt(document.getElementById('numCycles').value);
+    const startStr   = document.getElementById('startDate').value;
+    const cycleLen   = parseInt(document.getElementById('cycleLength').value);
+    const periodLen  = parseInt(document.getElementById('periodLength').value);
+    const numCycles  = parseInt(document.getElementById('numCycles').value);
 
-    if (!startStr) { alert('Please enter your last period start date.'); return; }
-    if (isNaN(cycleLength) || cycleLength < 21 || cycleLength > 45) { alert('Cycle length should be 21–45 days.'); return; }
-    if (isNaN(periodLength) || periodLength < 2 || periodLength > 10) { alert('Period duration should be 2–10 days.'); return; }
+    if (!startStr)                                    { alert('Please enter your last period start date.'); return; }
+    if (isNaN(cycleLen)||cycleLen<21||cycleLen>45)    { alert('Cycle length should be 21–45 days.'); return; }
+    if (isNaN(periodLen)||periodLen<2||periodLen>10)  { alert('Period duration should be 2–10 days.'); return; }
+    if (isNaN(numCycles)||numCycles<1)                { alert('Please enter how many cycles to generate.'); return; }
 
-    // Parse date using local time to avoid UTC timezone shifting the day
-    const [y, mo, dy] = startStr.split('-').map(Number);
-    const startDate = new Date(y, mo - 1, dy);
+    const [y,mo,dy] = startStr.split('-').map(Number);
+    const dtstamp = stamp();
+    const lines = [
+      'BEGIN:VCALENDAR','VERSION:2.0',
+      'PRODID:-//Cycle Calendar//EN',
+      'CALSCALE:GREGORIAN','METHOD:PUBLISH',
+      'X-WR-CALNAME:My Cycle Phases',
+    ];
 
     const previewContent = document.getElementById('previewContent');
     previewContent.innerHTML = '';
 
-    const dtstamp = fmtDTSTAMP();
-
-    const lines = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Cycle Calendar//EN',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'X-WR-CALNAME:My Cycle Phases',
-    ];
-
     for (let c = 0; c < numCycles; c++) {
-      const cycleStart = new Date(y, mo - 1, dy + c * cycleLength);
-      const phases = getPhases(cycleStart, cycleLength, periodLength);
+      const cycleStart = new Date(y, mo-1, dy + c*cycleLen);
+      const phases = getPhases(cycleStart, cycleLen, periodLen);
 
-      const cycleDiv = document.createElement('div');
-      cycleDiv.className = 'cycle-preview';
-      cycleDiv.innerHTML = `<div class="cycle-num">Cycle ${c + 1}</div>`;
+      const block = document.createElement('div');
+      block.className = 'cycle-preview';
+      block.innerHTML = `<div class="cycle-num">Cycle ${c+1}</div>`;
 
       phases.forEach(ph => {
-        // DTEND for all-day events must be the day AFTER the last day
-        const endPlusOne = new Date(ph.end);
-        endPlusOne.setDate(endPlusOne.getDate() + 1);
-
+        const endNext = new Date(ph.end); endNext.setDate(endNext.getDate()+1);
         lines.push(
-          'BEGIN:VEVENT',
-          `UID:${uid()}`,
-          `DTSTAMP:${dtstamp}`,
+          'BEGIN:VEVENT',`UID:${uid()}`,`DTSTAMP:${dtstamp}`,
           `DTSTART;VALUE=DATE:${fmtICS(ph.start)}`,
-          `DTEND;VALUE=DATE:${fmtICS(endPlusOne)}`,
-          `SUMMARY:${ph.name}`,
-          `DESCRIPTION:${ph.note}`,
-          'TRANSP:TRANSPARENT',
-          'END:VEVENT'
+          `DTEND;VALUE=DATE:${fmtICS(endNext)}`,
+          `SUMMARY:${ph.name}`,`DESCRIPTION:${ph.note}`,
+          'TRANSP:TRANSPARENT','END:VEVENT'
         );
-
         const row = document.createElement('div');
         row.className = 'phase-row';
-        row.innerHTML = `
-          <span class="phase-color" style="background:${ph.color}"></span>
-          <span class="phase-name">${ph.name}</span>
-          <span class="phase-dates">${fmt(ph.start)} – ${fmt(ph.end)}</span>
-        `;
-        cycleDiv.appendChild(row);
+        row.innerHTML = `<span class="phase-color" style="background:${ph.color}"></span><span class="phase-name">${ph.name}</span><span class="phase-dates">${fmt(ph.start)} – ${fmt(ph.end)}</span>`;
+        block.appendChild(row);
       });
-
-      previewContent.appendChild(cycleDiv);
+      previewContent.appendChild(block);
     }
 
     lines.push('END:VCALENDAR');
-    // Google Calendar requires strict \r\n line endings
     icsContent = lines.join('\r\n');
 
     document.getElementById('preview').classList.add('visible');
-    document.getElementById('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+    document.getElementById('preview').scrollIntoView({behavior:'smooth',block:'start'});
     downloadICS();
   }
 
   function downloadICS() {
     if (!icsContent) return;
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'cycle-phases.ics';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
+    const blob = new Blob([icsContent], {type:'text/calendar;charset=utf-8'});
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'cycle-phases.ics';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
     const msg = document.getElementById('successMsg');
     msg.classList.add('visible');
-    setTimeout(() => msg.classList.remove('visible'), 5000);
+    setTimeout(()=>msg.classList.remove('visible'), 5000);
   }
 </script>
 </body>
